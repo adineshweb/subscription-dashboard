@@ -62,6 +62,7 @@ app.use((req, res, next) => {
   next();
 });
 
+// Mounted Routes with '/api' Prefix (Standard)
 app.use('/api/auth', authRoutes);
 app.use('/api/plans', planRoutes);
 app.use('/api/user/profile', userRoutes);
@@ -70,6 +71,16 @@ app.post('/api/subscribe/order/:planId', authenticateUser, subscriptionControlle
 app.post('/api/subscribe/:planId', authenticateUser, subscriptionController.verifyPayment);
 app.get('/api/my-subscription', authenticateUser, subscriptionController.getMySubscription);
 app.get('/api/admin/subscriptions', authenticateUser, authorizeRoles('admin'), adminController.getSubscriptions);
+
+// Mounted Routes without '/api' Prefix (Fallback)
+app.use('/auth', authRoutes);
+app.use('/plans', planRoutes);
+app.use('/user/profile', userRoutes);
+
+app.post('/subscribe/order/:planId', authenticateUser, subscriptionController.createOrder);
+app.post('/subscribe/:planId', authenticateUser, subscriptionController.verifyPayment);
+app.get('/my-subscription', authenticateUser, subscriptionController.getMySubscription);
+app.get('/admin/subscriptions', authenticateUser, authorizeRoles('admin'), adminController.getSubscriptions);
 
 app.get('/', (req, res) => {
   res.json({ message: 'Subscription Management Dashboard API is running.' });

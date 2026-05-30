@@ -157,9 +157,13 @@ const Profile = () => {
                     type="password"
                     {...register('newPassword', {
                       minLength: {
-                        value: 6,
-                        message: 'New password must be at least 6 characters',
+                        value: 8,
+                        message: 'New password must be at least 8 characters',
                       },
+                      pattern: {
+                        value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                        message: 'New password must contain at least one uppercase letter, one lowercase letter, one number, and one special character',
+                      }
                     })}
                     className="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-805 border border-gray-250 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 text-sm dark:text-white"
                     placeholder="••••••••"
