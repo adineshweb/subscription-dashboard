@@ -79,10 +79,10 @@ const Navbar = () => {
                 {dropdownOpen && (
                   <>
                     <div className="fixed inset-0 z-10" onClick={() => setDropdownOpen(false)}></div>
-                    <div className="absolute right-0 mt-2 w-56 rounded-xl border border-gray-200 dark:border-gray-850 bg-white dark:bg-gray-900 shadow-xl py-1.5 z-20 divide-y divide-gray-100 dark:divide-gray-800">
+                    <div className="absolute right-0 mt-2 w-56 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-xl py-1.5 z-20 divide-y divide-gray-100 dark:divide-gray-800">
                       <div className="px-4 py-3">
-                        <p className="text-xs text-gray-400 dark:text-gray-550">Signed in as</p>
-                        <p className="text-sm font-semibold text-gray-850 dark:text-gray-200 truncate">{user?.email}</p>
+                        <p className="text-xs text-gray-400 dark:text-gray-400">Signed in as</p>
+                        <p className="text-sm font-semibold text-gray-900 dark:text-gray-200 truncate">{user?.email}</p>
                         <span className="inline-flex items-center px-2 py-0.5 mt-1 rounded text-xs font-semibold bg-primary-100 text-primary-800 dark:bg-primary-900/40 dark:text-primary-300">
                           {user?.role?.toUpperCase()}
                         </span>
@@ -110,7 +110,7 @@ const Navbar = () => {
                       <div className="py-1">
                         <button
                           onClick={handleLogout}
-                          className="flex w-full items-center gap-2 px-4 py-2 text-sm text-red-650 hover:bg-red-50 dark:hover:bg-red-950/20 transition-colors"
+                          className="flex w-full items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-950/20 transition-colors"
                         >
                           <LogOut className="w-4 h-4" />
                           <span>Logout</span>
@@ -124,7 +124,7 @@ const Navbar = () => {
               <div className="flex items-center gap-3">
                 <Link
                   to="/login"
-                  className="px-4 py-2 text-sm font-semibold text-gray-750 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+                  className="px-4 py-2 text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
                 >
                   Login
                 </Link>
@@ -155,7 +155,7 @@ const Navbar = () => {
           <Link
             to="/plans"
             onClick={() => setMobileMenuOpen(false)}
-            className="block px-3 py-2.5 rounded-xl text-base font-semibold text-gray-755 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
+            className="block px-3 py-2.5 rounded-xl text-base font-semibold text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
           >
             Plans
           </Link>
@@ -164,14 +164,14 @@ const Navbar = () => {
               <Link
                 to="/dashboard"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block px-3 py-2.5 rounded-xl text-base font-semibold text-gray-755 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
+                className="block px-3 py-2.5 rounded-xl text-base font-semibold text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
               >
                 Dashboard
               </Link>
               <Link
                 to="/profile"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block px-3 py-2.5 rounded-xl text-base font-semibold text-gray-755 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
+                className="block px-3 py-2.5 rounded-xl text-base font-semibold text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
               >
                 My Profile
               </Link>
@@ -179,14 +179,14 @@ const Navbar = () => {
                 <Link
                   to="/admin/subscriptions"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="block px-3 py-2.5 rounded-xl text-base font-semibold text-gray-755 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
+                  className="block px-3 py-2.5 rounded-xl text-base font-semibold text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
                 >
                   Admin Panel
                 </Link>
               )}
               <button
                 onClick={handleLogout}
-                className="flex w-full items-center gap-2 px-3 py-2.5 rounded-xl text-base font-semibold text-red-655 hover:bg-red-50 dark:hover:bg-red-950/20"
+                className="flex w-full items-center gap-2 px-3 py-2.5 rounded-xl text-base font-semibold text-red-600 hover:bg-red-50 dark:hover:bg-red-950/20"
               >
                 <LogOut className="w-5 h-5 text-red-500" />
                 <span>Logout</span>
@@ -198,7 +198,7 @@ const Navbar = () => {
               <Link
                 to="/login"
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full text-center px-4 py-2.5 text-base font-semibold text-gray-755 dark:text-gray-300 border border-gray-200 dark:border-gray-700 rounded-xl"
+                className="w-full text-center px-4 py-2.5 text-base font-semibold text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 rounded-xl"
               >
                 Login
               </Link>

@@ -76,7 +76,7 @@ const AdminSubscriptions = () => {
     <div className="space-y-8 py-4">
       {/* Page Header */}
       <div>
-        <h1 className="text-3xl font-extrabold text-gray-850 dark:text-white tracking-tight">
+        <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight">
           Admin Portal
         </h1>
         <p className="text-gray-500 dark:text-gray-400 mt-1">
@@ -86,60 +86,60 @@ const AdminSubscriptions = () => {
 
       {/* Analytics KPIs */}
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
-        <div className="bg-white dark:bg-gray-850 p-6 rounded-3xl border border-gray-100 dark:border-gray-800 shadow-sm flex items-center gap-4">
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-3xl border border-gray-100 dark:border-gray-800 shadow-sm flex items-center gap-4">
           <div className="p-3.5 bg-green-50 dark:bg-green-950/20 text-green-600 dark:text-green-400 rounded-2xl">
             <ShieldCheck className="w-6 h-6" />
           </div>
           <div>
             <p className="text-xs text-gray-400 dark:text-gray-500 font-bold uppercase tracking-wider">Active Subscriptions</p>
-            <p className="text-2xl font-black text-gray-850 dark:text-white mt-1">{analytics.totalActiveCount}</p>
+            <p className="text-2xl font-black text-gray-900 dark:text-white mt-1">{analytics.totalActiveCount}</p>
           </div>
         </div>
 
-        <div className="bg-white dark:bg-gray-850 p-6 rounded-3xl border border-gray-100 dark:border-gray-800 shadow-sm flex items-center gap-4">
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-3xl border border-gray-100 dark:border-gray-800 shadow-sm flex items-center gap-4">
           <div className="p-3.5 bg-primary-50 dark:bg-primary-950/20 text-primary-600 dark:text-primary-400 rounded-2xl">
             <Users className="w-6 h-6" />
           </div>
           <div>
             <p className="text-xs text-gray-400 dark:text-gray-500 font-bold uppercase tracking-wider">Total Subscriptions</p>
-            <p className="text-2xl font-black text-gray-850 dark:text-white mt-1">{analytics.totalSubscriptionsCount}</p>
+            <p className="text-2xl font-black text-gray-900 dark:text-white mt-1">{analytics.totalSubscriptionsCount}</p>
           </div>
         </div>
 
-        <div className="bg-white dark:bg-gray-850 p-6 rounded-3xl border border-gray-100 dark:border-gray-800 shadow-sm flex items-center gap-4">
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-3xl border border-gray-100 dark:border-gray-800 shadow-sm flex items-center gap-4">
           <div className="p-3.5 bg-blue-50 dark:bg-blue-950/20 text-blue-600 dark:text-blue-400 rounded-2xl">
             <TrendingUp className="w-6 h-6" />
           </div>
           <div>
             <p className="text-xs text-gray-400 dark:text-gray-500 font-bold uppercase tracking-wider">MRR (Active revenue)</p>
-            <p className="text-2xl font-black text-gray-850 dark:text-white mt-1">₹{analytics.totalMonthlyRevenue}</p>
+            <p className="text-2xl font-black text-gray-900 dark:text-white mt-1">₹{analytics.totalMonthlyRevenue}</p>
           </div>
         </div>
       </div>
 
       {/* Search and Filters panel */}
-      <div className="bg-white dark:bg-gray-850 p-6 rounded-3xl border border-gray-100 dark:border-gray-800 shadow-md">
+      <div className="bg-white dark:bg-gray-800 p-6 rounded-3xl border border-gray-100 dark:border-gray-800 shadow-md">
         <form onSubmit={handleSearchSubmit} className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
           <div className="md:col-span-2">
-            <label className="block text-xs font-semibold text-gray-400 dark:text-gray-550 uppercase mb-2">Search User</label>
+            <label className="block text-xs font-semibold text-gray-400 dark:text-gray-400 uppercase mb-2">Search User</label>
             <div className="relative">
               <input
                 type="text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search user name or email..."
-                className="w-full pl-10 pr-4 py-2.5 bg-gray-50 dark:bg-gray-805 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 text-sm dark:text-white"
+                className="w-full pl-10 pr-4 py-2.5 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 text-sm dark:text-white"
               />
               <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-gray-400 dark:text-gray-550 uppercase mb-2">Status</label>
+            <label className="block text-xs font-semibold text-gray-400 dark:text-gray-400 uppercase mb-2">Status</label>
             <select
               value={status}
               onChange={(e) => { setStatus(e.target.value); setPage(1); }}
-              className="w-full px-3 py-2.5 bg-gray-50 dark:bg-gray-805 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 text-sm dark:text-white"
+              className="w-full px-3 py-2.5 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 text-sm dark:text-white"
             >
               <option value="">All Statuses</option>
               <option value="active">Active</option>
@@ -148,11 +148,11 @@ const AdminSubscriptions = () => {
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-gray-400 dark:text-gray-550 uppercase mb-2">Plan</label>
+            <label className="block text-xs font-semibold text-gray-400 dark:text-gray-400 uppercase mb-2">Plan</label>
             <select
               value={planFilter}
               onChange={(e) => { setPlanFilter(e.target.value); setPage(1); }}
-              className="w-full px-3 py-2.5 bg-gray-50 dark:bg-gray-805 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 text-sm dark:text-white"
+              className="w-full px-3 py-2.5 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 text-sm dark:text-white"
             >
               <option value="">All Plans</option>
               {plans.map((p) => (
@@ -164,20 +164,20 @@ const AdminSubscriptions = () => {
       </div>
 
       {/* Subscriptions Table */}
-      <div className="bg-white dark:bg-gray-850 rounded-3xl border border-gray-100 dark:border-gray-800 shadow-md overflow-hidden">
+      <div className="bg-white dark:bg-gray-800 rounded-3xl border border-gray-100 dark:border-gray-800 shadow-md overflow-hidden">
         <div className="overflow-x-auto">
           {loading ? (
             <div className="py-20">
               <LoadingSpinner size="lg" />
             </div>
           ) : subscriptions.length === 0 ? (
-            <div className="py-20 text-center text-gray-450 dark:text-gray-500">
+            <div className="py-20 text-center text-gray-500 dark:text-gray-500">
               No matching subscription logs found.
             </div>
           ) : (
             <table className="w-full text-left border-collapse text-sm">
               <thead>
-                <tr className="bg-gray-50/50 dark:bg-gray-800/30 text-gray-450 dark:text-gray-500 font-bold border-b border-gray-100 dark:border-gray-800 uppercase text-xs">
+                <tr className="bg-gray-50/50 dark:bg-gray-800/30 text-gray-500 dark:text-gray-500 font-bold border-b border-gray-100 dark:border-gray-800 uppercase text-xs">
                   <th className="px-6 py-4">User</th>
                   <th className="px-6 py-4">Email</th>
                   <th className="px-6 py-4">Plan Name</th>
@@ -212,8 +212,8 @@ const AdminSubscriptions = () => {
                       <span
                         className={`inline-flex px-2.5 py-0.5 rounded-full text-xs font-bold uppercase ${
                           sub.status === 'active'
-                            ? 'bg-green-55/10 text-green-700 dark:bg-green-950/20 dark:text-green-400'
-                            : 'bg-red-55/10 text-red-705 dark:bg-red-950/20 dark:text-red-400'
+                            ? 'bg-green-500/10 text-green-700 dark:bg-green-950/20 dark:text-green-400'
+                            : 'bg-red-500/10 text-red-700 dark:bg-red-950/20 dark:text-red-400'
                         }`}
                       >
                         {sub.status}
@@ -236,14 +236,14 @@ const AdminSubscriptions = () => {
               <button
                 onClick={() => setPage((p) => Math.max(p - 1, 1))}
                 disabled={page === 1}
-                className="p-1.5 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-705 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg text-gray-500 dark:text-gray-300 transition-colors"
+                className="p-1.5 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg text-gray-500 dark:text-gray-300 transition-colors"
               >
                 <ChevronLeft className="w-4 h-4" />
               </button>
               <button
                 onClick={() => setPage((p) => Math.min(p + 1, pagination.pages))}
                 disabled={page === pagination.pages}
-                className="p-1.5 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-705 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg text-gray-500 dark:text-gray-300 transition-colors"
+                className="p-1.5 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg text-gray-500 dark:text-gray-300 transition-colors"
               >
                 <ChevronRight className="w-4 h-4" />
               </button>

@@ -3,7 +3,7 @@ import { HelpCircle } from 'lucide-react';
 
 const EmptyState = ({ icon: Icon = HelpCircle, title, description, actionText, onAction }) => {
   return (
-    <div className="flex flex-col items-center justify-center p-8 text-center bg-white dark:bg-gray-850 border border-gray-100 dark:border-gray-800 rounded-2xl shadow-sm max-w-md mx-auto">
+    <div className="flex flex-col items-center justify-center p-8 text-center bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-800 rounded-2xl shadow-sm max-w-md mx-auto">
       <div className="p-4 bg-primary-50 dark:bg-primary-950/20 text-primary-500 dark:text-primary-400 rounded-full mb-4">
         <Icon className="w-10 h-10" />
       </div>

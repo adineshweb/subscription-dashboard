@@ -263,7 +263,7 @@ const Plans = () => {
 
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto mb-8">
-        <h1 className="text-4xl font-extrabold text-gray-850 dark:text-white tracking-tight mb-4 sm:text-5xl">
+        <h1 className="text-4xl font-extrabold text-gray-900 dark:text-white tracking-tight mb-4 sm:text-5xl">
           Choose the right plan for your business
         </h1>
         <p className="text-lg text-gray-500 dark:text-gray-400">
@@ -309,7 +309,7 @@ const Plans = () => {
           return (
             <div
               key={plan._id}
-              className={`relative flex flex-col justify-between p-6 bg-white dark:bg-gray-850 border rounded-3xl transition-all hover:-translate-y-1.5 duration-300 shadow-md ${
+              className={`relative flex flex-col justify-between p-6 bg-white dark:bg-gray-800 border rounded-3xl transition-all hover:-translate-y-1.5 duration-300 shadow-md ${
                 plan.popular
                   ? 'border-primary-500 ring-2 ring-primary-500/20 shadow-primary-500/5'
                   : 'border-gray-100 dark:border-gray-800'
@@ -323,7 +323,7 @@ const Plans = () => {
 
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-lg font-extrabold text-gray-850 dark:text-white">
+                  <span className="text-lg font-extrabold text-gray-900 dark:text-white">
                     {plan.name}
                   </span>
                   <div className="p-2 bg-gray-50 dark:bg-gray-800 rounded-xl">
@@ -337,7 +337,7 @@ const Plans = () => {
 
                 <div className="flex flex-col mb-6">
                   <div className="flex items-baseline">
-                    <span className="text-3xl font-black text-gray-850 dark:text-white">
+                    <span className="text-3xl font-black text-gray-900 dark:text-white">
                       ₹{displayPrice}
                     </span>
                     <span className="text-xs font-semibold text-gray-400 dark:text-gray-500 ml-2">
@@ -368,7 +368,7 @@ const Plans = () => {
                 disabled={isSubmitting || isCurrent}
                 className={`w-full py-3 font-semibold rounded-xl text-sm transition-all flex items-center justify-center gap-2 ${
                   isCurrent
-                    ? 'bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-650 cursor-default'
+                    ? 'bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-500 cursor-default'
                     : 'bg-primary-600 hover:bg-primary-700 disabled:bg-primary-400 text-white shadow-md active:scale-95'
                 }`}
               >

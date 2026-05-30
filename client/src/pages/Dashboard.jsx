@@ -101,12 +101,12 @@ const Dashboard = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* User Account Info */}
-        <div className="bg-white dark:bg-gray-850 p-6 rounded-3xl border border-gray-100 dark:border-gray-800 shadow-md">
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-3xl border border-gray-100 dark:border-gray-800 shadow-md">
           <div className="flex items-center gap-3 mb-6">
             <div className="p-2.5 bg-gray-50 dark:bg-gray-800 text-gray-500 dark:text-gray-400 rounded-xl">
               <User className="w-5 h-5" />
             </div>
-            <h2 className="text-lg font-bold text-gray-850 dark:text-white">Profile Details</h2>
+            <h2 className="text-lg font-bold text-gray-900 dark:text-white">Profile Details</h2>
           </div>
 
           <div className="space-y-4">
@@ -120,13 +120,13 @@ const Dashboard = () => {
             </div>
             <div>
               <p className="text-xs text-gray-400 dark:text-gray-500 font-semibold uppercase">Role</p>
-              <span className="inline-flex px-2.5 py-0.5 rounded-full text-xs font-bold bg-primary-50 text-primary-750 dark:bg-primary-950/30 dark:text-primary-400 mt-1">
+              <span className="inline-flex px-2.5 py-0.5 rounded-full text-xs font-bold bg-primary-50 text-primary-700 dark:bg-primary-950/30 dark:text-primary-400 mt-1">
                 {user?.role?.toUpperCase()}
               </span>
             </div>
             <div>
               <p className="text-xs text-gray-400 dark:text-gray-500 font-semibold uppercase">Member Since</p>
-              <p className="text-sm font-semibold text-gray-850 dark:text-gray-200 mt-0.5">{formatDate(user?.createdAt)}</p>
+              <p className="text-sm font-semibold text-gray-900 dark:text-gray-200 mt-0.5">{formatDate(user?.createdAt)}</p>
             </div>
           </div>
         </div>
@@ -136,7 +136,7 @@ const Dashboard = () => {
           {currentPlan ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 h-full">
               {/* Active Plan Stats */}
-              <div className="bg-white dark:bg-gray-850 p-6 rounded-3xl border border-gray-100 dark:border-gray-800 shadow-md flex flex-col justify-between">
+              <div className="bg-white dark:bg-gray-800 p-6 rounded-3xl border border-gray-100 dark:border-gray-800 shadow-md flex flex-col justify-between">
                 <div>
                   <div className="flex items-center justify-between mb-4">
                     <span className="px-3 py-1 bg-green-50 text-green-700 dark:bg-green-950/20 dark:text-green-400 rounded-full text-xs font-bold uppercase">
@@ -144,7 +144,7 @@ const Dashboard = () => {
                     </span>
                     <Sparkles className="w-5 h-5 text-yellow-500" />
                   </div>
-                  <h3 className="text-2xl font-black text-gray-855 dark:text-white">
+                  <h3 className="text-2xl font-black text-gray-900 dark:text-white">
                     {currentPlan.planId?.name} Plan
                   </h3>
                   <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">
@@ -153,11 +153,11 @@ const Dashboard = () => {
                 </div>
 
                 <div className="mt-8 space-y-3">
-                  <div className="flex items-center gap-2.5 text-sm text-gray-655 dark:text-gray-400">
+                  <div className="flex items-center gap-2.5 text-sm text-gray-600 dark:text-gray-400">
                     <Calendar className="w-4 h-4 text-primary-500" />
                     <span>Start: {formatDate(currentPlan.startDate)}</span>
                   </div>
-                  <div className="flex items-center gap-2.5 text-sm text-gray-655 dark:text-gray-400">
+                  <div className="flex items-center gap-2.5 text-sm text-gray-600 dark:text-gray-400">
                     <Calendar className="w-4 h-4 text-red-500" />
                     <span>End: {formatDate(currentPlan.endDate)}</span>
                   </div>
@@ -165,19 +165,19 @@ const Dashboard = () => {
               </div>
 
               {/* Progress & Analytics details */}
-              <div className="bg-white dark:bg-gray-850 p-6 rounded-3xl border border-gray-100 dark:border-gray-800 shadow-md flex flex-col justify-between">
+              <div className="bg-white dark:bg-gray-800 p-6 rounded-3xl border border-gray-100 dark:border-gray-800 shadow-md flex flex-col justify-between">
                 <div>
                   <div className="flex items-center gap-3 mb-6">
                     <div className="p-2 bg-primary-50 dark:bg-primary-950/20 text-primary-500 dark:text-primary-400 rounded-xl">
                       <Clock className="w-5 h-5" />
                     </div>
-                    <h2 className="text-lg font-bold text-gray-850 dark:text-white">Usage Meter</h2>
+                    <h2 className="text-lg font-bold text-gray-900 dark:text-white">Usage Meter</h2>
                   </div>
 
                   <div className="space-y-4">
                     <div className="flex justify-between text-sm font-semibold">
-                      <span className="text-gray-500 dark:text-gray-450">Remaining Days</span>
-                      <span className="text-gray-850 dark:text-white font-bold">
+                      <span className="text-gray-500 dark:text-gray-400">Remaining Days</span>
+                      <span className="text-gray-900 dark:text-white font-bold">
                         {getDaysRemaining(currentPlan.endDate)} / {currentPlan.planId?.duration} Days
                       </span>
                     </div>
