@@ -53,6 +53,7 @@ const Login = () => {
             </label>
             <input
               type="email"
+              autoComplete="email"
               {...register('email', {
                 required: 'Email is required',
                 pattern: {
@@ -77,6 +78,7 @@ const Login = () => {
             <div className="relative">
               <input
                 type={showPassword ? 'text' : 'password'}
+                autoComplete="current-password"
                 {...register('password', { required: 'Password is required' })}
                 className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-800 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-all text-sm pr-11"
                 placeholder="••••••••"
