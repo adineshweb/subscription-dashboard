@@ -7,7 +7,19 @@ const planSchema = new mongoose.Schema({
     unique: true,
     trim: true,
   },
+  description: {
+    type: String,
+    default: '',
+  },
   price: {
+    type: Number,
+    required: true,
+  },
+  monthlyPrice: {
+    type: Number,
+    required: true,
+  },
+  yearlyPrice: {
     type: Number,
     required: true,
   },
@@ -17,7 +29,15 @@ const planSchema = new mongoose.Schema({
   },
   duration: {
     type: Number,
-    required: true,
+    default: 30,
+  },
+  popular: {
+    type: Boolean,
+    default: false,
+  },
+  active: {
+    type: Boolean,
+    default: true,
   },
   createdAt: {
     type: Date,
@@ -25,5 +45,4 @@ const planSchema = new mongoose.Schema({
   },
 });
 
-const Plan = mongoose.model('Plan', planSchema);
-module.exports = Plan;
+module.exports = mongoose.model('Plan', planSchema);
