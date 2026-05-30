@@ -1,7 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const storedSubscription = localStorage.getItem('subscription');
+
 const initialState = {
-  currentPlan: null,
+  currentPlan: storedSubscription ? JSON.parse(storedSubscription) : null,
   loading: false,
   error: null,
 };
@@ -18,6 +20,11 @@ const subscriptionSlice = createSlice({
       state.loading = false;
       state.currentPlan = action.payload;
       state.error = null;
+      if (action.payload) {
+        localStorage.setItem('subscription', JSON.stringify(action.payload));
+      } else {
+        localStorage.removeItem('subscription');
+      }
     },
     fetchSubscriptionFailure: (state, action) => {
       state.loading = false;
@@ -25,11 +32,17 @@ const subscriptionSlice = createSlice({
     },
     setSubscription: (state, action) => {
       state.currentPlan = action.payload;
+      if (action.payload) {
+        localStorage.setItem('subscription', JSON.stringify(action.payload));
+      } else {
+        localStorage.removeItem('subscription');
+      }
     },
     clearSubscription: (state) => {
       state.currentPlan = null;
       state.loading = false;
       state.error = null;
+      localStorage.removeItem('subscription');
     },
   },
 });

@@ -20,8 +20,28 @@ const Dashboard = () => {
       dispatch(fetchSubscriptionStart());
       try {
         const res = await api.get('/my-subscription');
-        dispatch(fetchSubscriptionSuccess(res.data));
+        if (res.data) {
+          dispatch(fetchSubscriptionSuccess(res.data));
+        } else {
+          const stored = localStorage.getItem('subscription');
+          if (stored) {
+            const parsed = JSON.parse(stored);
+            if (parsed.planId?._id?.startsWith('mock_')) {
+              dispatch(fetchSubscriptionSuccess(parsed));
+              return;
+            }
+          }
+          dispatch(fetchSubscriptionSuccess(null));
+        }
       } catch (err) {
+        const stored = localStorage.getItem('subscription');
+        if (stored) {
+          const parsed = JSON.parse(stored);
+          if (parsed.planId?._id?.startsWith('mock_')) {
+            dispatch(fetchSubscriptionSuccess(parsed));
+            return;
+          }
+        }
         dispatch(fetchSubscriptionFailure(err.response?.data?.message || 'Failed to fetch subscription.'));
         setToast({ type: 'error', message: 'Failed to sync subscription details.' });
       }
