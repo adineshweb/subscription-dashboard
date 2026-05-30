@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import api from '../services/api';
 import { setSubscription } from '../redux/slices/subscriptionSlice';
+import { updateUserSuccess } from '../redux/slices/authSlice';
 import LoadingSpinner from '../components/LoadingSpinner';
 import Toast from '../components/Toast';
 import { Check, Flame, Shield, Zap, Sparkles, AlertCircle, RefreshCw } from 'lucide-react';
@@ -146,6 +147,9 @@ const Plans = () => {
               });
 
               dispatch(setSubscription(verifyRes.data.subscription));
+              if (verifyRes.data.user) {
+                dispatch(updateUserSuccess(verifyRes.data.user));
+              }
               setToast({ type: 'success', message: `Successfully subscribed to ${plan.name}!` });
               setTimeout(() => navigate('/dashboard'), 2000);
             } catch (err) {
@@ -175,30 +179,16 @@ const Plans = () => {
         
         setTimeout(async () => {
           try {
-            let subscriptionData;
-            if (isMockPlan) {
-              // Simulate direct frontend mock subscription activation
-              subscriptionData = {
-                userId: user.id,
-                planId: {
-                  _id: plan._id,
-                  name: plan.name,
-                  price: billingPeriod === 'monthly' ? plan.monthlyPrice : plan.yearlyPrice,
-                  duration: plan.duration,
-                },
-                startDate: new Date().toISOString(),
-                endDate: new Date(Date.now() + plan.duration * 24 * 60 * 60 * 1000).toISOString(),
-                status: 'active',
-              };
-            } else {
-              const verifyRes = await api.post(`/subscribe/${plan._id}`, {
-                razorpayOrderId: orderId,
-                razorpayPaymentId: `mock_pay_${Date.now()}`,
-              });
-              subscriptionData = verifyRes.data.subscription;
-            }
+            const verifyRes = await api.post(`/subscribe/${plan._id}`, {
+              razorpayOrderId: orderId,
+              razorpayPaymentId: `mock_pay_${Date.now()}`,
+            });
+            const subscriptionData = verifyRes.data.subscription;
 
             dispatch(setSubscription(subscriptionData));
+            if (verifyRes.data.user) {
+              dispatch(updateUserSuccess(verifyRes.data.user));
+            }
             setToast({ type: 'success', message: `Payment simulated! Subscribed to ${plan.name}!` });
             setTimeout(() => navigate('/dashboard'), 2000);
           } catch (err) {

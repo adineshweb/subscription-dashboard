@@ -69,7 +69,9 @@ app.use('/api/user/profile', userRoutes);
 
 app.post('/api/subscribe/order/:planId', authenticateUser, subscriptionController.createOrder);
 app.post('/api/subscribe/:planId', authenticateUser, subscriptionController.verifyPayment);
+app.post('/api/subscribe/cancel', authenticateUser, subscriptionController.cancelSubscription);
 app.get('/api/my-subscription', authenticateUser, subscriptionController.getMySubscription);
+app.get('/api/subscription/me', authenticateUser, subscriptionController.getSubscriptionMe);
 app.get('/api/admin/subscriptions', authenticateUser, authorizeRoles('admin'), adminController.getSubscriptions);
 
 // Mounted Routes without '/api' Prefix (Fallback)
@@ -79,7 +81,9 @@ app.use('/user/profile', userRoutes);
 
 app.post('/subscribe/order/:planId', authenticateUser, subscriptionController.createOrder);
 app.post('/subscribe/:planId', authenticateUser, subscriptionController.verifyPayment);
+app.post('/subscribe/cancel', authenticateUser, subscriptionController.cancelSubscription);
 app.get('/my-subscription', authenticateUser, subscriptionController.getMySubscription);
+app.get('/subscription/me', authenticateUser, subscriptionController.getSubscriptionMe);
 app.get('/admin/subscriptions', authenticateUser, authorizeRoles('admin'), adminController.getSubscriptions);
 
 app.get('/', (req, res) => {

@@ -29,6 +29,27 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: null,
   },
+  subscriptionId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Subscription',
+    default: null,
+  },
+  currentPlan: {
+    type: String,
+    default: null,
+  },
+  subscriptionStatus: {
+    type: String,
+    default: 'inactive',
+  },
+  subscriptionStartDate: {
+    type: Date,
+    default: null,
+  },
+  subscriptionEndDate: {
+    type: Date,
+    default: null,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

@@ -83,6 +83,21 @@ const Profile = () => {
           <span className="inline-flex px-3 py-1 rounded-full text-xs font-bold bg-primary-50 text-primary-700 dark:bg-primary-950/20 dark:text-primary-400">
             {user?.role?.toUpperCase()}
           </span>
+          <div className="mt-6 pt-6 border-t border-gray-100 dark:border-gray-800 text-left">
+            <p className="text-xs text-gray-400 dark:text-gray-500 font-semibold uppercase">Subscription Plan</p>
+            <p className="text-sm font-bold text-gray-800 dark:text-gray-200 mt-1">
+              {user?.currentPlan ? `${user.currentPlan} Plan` : 'No Active Plan'}
+            </p>
+            {user?.currentPlan && (
+              <span className={`inline-flex px-2.5 py-0.5 mt-1.5 rounded-full text-2xs font-extrabold uppercase tracking-wide ${
+                user?.subscriptionStatus === 'active' 
+                  ? 'bg-green-50 text-green-700 dark:bg-green-950/20 dark:text-green-400' 
+                  : 'bg-red-50 text-red-700 dark:bg-red-950/20 dark:text-red-400'
+              }`}>
+                {user?.subscriptionStatus}
+              </span>
+            )}
+          </div>
         </div>
 
         {/* Edit Fields Form */}

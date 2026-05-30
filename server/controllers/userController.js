@@ -13,6 +13,11 @@ exports.getProfile = async (req, res, next) => {
       name: user.name,
       email: user.email,
       role: user.role,
+      currentPlan: user.currentPlan,
+      subscriptionStatus: user.subscriptionStatus,
+      subscriptionStartDate: user.subscriptionStartDate,
+      subscriptionEndDate: user.subscriptionEndDate,
+      subscriptionId: user.subscriptionId,
       createdAt: user.createdAt,
     });
   } catch (error) {
@@ -58,6 +63,11 @@ exports.updateProfile = async (req, res, next) => {
         name: user.name,
         email: user.email,
         role: user.role,
+        currentPlan: user.currentPlan,
+        subscriptionStatus: user.subscriptionStatus,
+        subscriptionStartDate: user.subscriptionStartDate,
+        subscriptionEndDate: user.subscriptionEndDate,
+        subscriptionId: user.subscriptionId,
         createdAt: user.createdAt,
       },
     });

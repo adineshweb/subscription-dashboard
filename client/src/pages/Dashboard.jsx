@@ -15,39 +15,32 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchMySubscription = async () => {
-      dispatch(fetchSubscriptionStart());
-      try {
-        const res = await api.get('/my-subscription');
-        if (res.data) {
-          dispatch(fetchSubscriptionSuccess(res.data));
-        } else {
-          const stored = localStorage.getItem('subscription');
-          if (stored) {
-            const parsed = JSON.parse(stored);
-            if (parsed.planId?._id?.startsWith('mock_')) {
-              dispatch(fetchSubscriptionSuccess(parsed));
-              return;
-            }
-          }
-          dispatch(fetchSubscriptionSuccess(null));
-        }
-      } catch (err) {
-        const stored = localStorage.getItem('subscription');
-        if (stored) {
-          const parsed = JSON.parse(stored);
-          if (parsed.planId?._id?.startsWith('mock_')) {
-            dispatch(fetchSubscriptionSuccess(parsed));
-            return;
-          }
-        }
-        dispatch(fetchSubscriptionFailure(err.response?.data?.message || 'Failed to fetch subscription.'));
-        setToast({ type: 'error', message: 'Failed to sync subscription details.' });
+  const fetchSubscription = async () => {
+    dispatch(fetchSubscriptionStart());
+    try {
+      const res = await api.get('/subscription/me');
+      if (res.data && res.data.active) {
+        const subscriptionData = {
+          planId: {
+            name: res.data.planName,
+            price: res.data.amount,
+            duration: Math.round((new Date(res.data.endDate) - new Date(res.data.startDate)) / (1000 * 60 * 60 * 24)) || 30,
+          },
+          startDate: res.data.startDate,
+          endDate: res.data.endDate,
+          status: 'active',
+        };
+        dispatch(fetchSubscriptionSuccess(subscriptionData));
+      } else {
+        dispatch(fetchSubscriptionSuccess(null));
       }
-    };
+    } catch (err) {
+      dispatch(fetchSubscriptionFailure(err.response?.data?.message || 'Failed to fetch subscription.'));
+    }
+  };
 
-    fetchMySubscription();
+  useEffect(() => {
+    fetchSubscription();
   }, [dispatch]);
 
   const formatDate = (dateStr) => {
@@ -69,6 +62,17 @@ const Dashboard = () => {
     const elapsed = new Date() - new Date(startDateStr);
     const percentage = Math.round((elapsed / total) * 100);
     return percentage > 100 ? 100 : (percentage < 0 ? 0 : percentage);
+  };
+
+  const handleCancel = async () => {
+    if (!window.confirm('Are you sure you want to cancel your active subscription?')) return;
+    try {
+      await api.post('/subscribe/cancel');
+      setToast({ type: 'success', message: 'Subscription cancelled successfully.' });
+      fetchSubscription();
+    } catch (err) {
+      setToast({ type: 'error', message: err.response?.data?.message || 'Failed to cancel subscription.' });
+    }
   };
 
   if (loading) {
@@ -196,12 +200,20 @@ const Dashboard = () => {
                   </div>
                 </div>
 
-                <button
-                  onClick={() => navigate('/plans')}
-                  className="w-full mt-6 py-2.5 bg-gray-50 hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 font-semibold rounded-xl text-sm border border-gray-200/50 dark:border-gray-700 transition-colors"
-                >
-                  Change / Upgrade Plan
-                </button>
+                <div className="flex gap-4 mt-6">
+                  <button
+                    onClick={() => navigate('/plans')}
+                    className="flex-1 py-2.5 bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-xl text-sm transition-all shadow-md shadow-primary-500/10 active:scale-95 text-center"
+                  >
+                    Renew Plan
+                  </button>
+                  <button
+                    onClick={handleCancel}
+                    className="flex-1 py-2.5 bg-red-50 hover:bg-red-100 dark:bg-red-950/20 dark:hover:bg-red-950/40 text-red-600 dark:text-red-400 font-semibold rounded-xl text-sm border border-red-200/50 dark:border-red-900/50 transition-colors active:scale-95 text-center"
+                  >
+                    Cancel Subscription
+                  </button>
+                </div>
               </div>
             </div>
           ) : (

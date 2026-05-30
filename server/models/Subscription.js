@@ -10,7 +10,27 @@ const subscriptionSchema = new mongoose.Schema({
   planId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Plan',
+    required: false,
+  },
+  planName: {
+    type: String,
     required: true,
+  },
+  amount: {
+    type: Number,
+    required: true,
+  },
+  paymentId: {
+    type: String,
+    required: true,
+  },
+  orderId: {
+    type: String,
+    required: true,
+  },
+  razorpaySignature: {
+    type: String,
+    default: null,
   },
   startDate: {
     type: Date,
@@ -22,16 +42,12 @@ const subscriptionSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ['active', 'expired'],
+    required: true,
     default: 'active',
   },
-  razorpayOrderId: {
+  paymentMethod: {
     type: String,
-    default: null,
-  },
-  razorpayPaymentId: {
-    type: String,
-    default: null,
+    default: 'card',
   },
   createdAt: {
     type: Date,

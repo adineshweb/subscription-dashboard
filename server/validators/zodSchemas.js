@@ -15,7 +15,7 @@ const loginSchema = z.object({
 });
 
 const subscribeSchema = z.object({
-  planId: z.string().regex(/^[0-9a-fA-F]{24}$/, 'Invalid plan ID format'),
+  planId: z.string().min(1, 'Plan ID is required'),
 });
 
 const updateProfileSchema = z.object({
