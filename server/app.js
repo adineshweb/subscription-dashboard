@@ -11,23 +11,46 @@ const errorHandler = require('./middleware/errorMiddleware');
 
 const app = express();
 
+const defaultOrigins = [
+  'http://localhost:5173',
+  'https://subscription-dashboard-orpin.vercel.app',
+  'https://subscription-dashboard-git-main-dineshs-projects-dea0080c.vercel.app'
+];
+
 const allowedOrigins = process.env.ALLOWED_ORIGINS
   ? process.env.ALLOWED_ORIGINS.split(',').map(o => o.trim())
-  : ['http://localhost:5173'];
+  : defaultOrigins;
+
+// Merge arrays and filter duplicates to guarantee defaults are always accessible
+const finalAllowedOrigins = [...new Set([...allowedOrigins, ...defaultOrigins])];
 
 const corsOptions = {
   origin: function (origin, callback) {
     if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) !== -1 || allowedOrigins.includes('*')) {
+    
+    const isAllowed = finalAllowedOrigins.some(allowedOrigin => {
+      if (allowedOrigin === origin || allowedOrigin === '*') return true;
+      // Allow Vercel preview domains dynamically
+      if (
+        origin.includes('vercel.app') && 
+        origin.includes('subscription-dashboard')
+      ) {
+        return true;
+      }
+      return false;
+    });
+
+    if (isAllowed) {
       callback(null, true);
     } else {
-      console.warn(`CORS Warning: Blocked origin ${origin}`);
-      callback(new Error('Blocked by CORS policy'));
+      console.warn(`CORS Blocked: ${origin}`);
+      callback(null, false); // Safe fallback (no Express crash)
     }
   },
   credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
+  optionsSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
 
