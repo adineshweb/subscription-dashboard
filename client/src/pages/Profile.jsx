@@ -137,6 +137,7 @@ const Profile = () => {
                   <label className="block text-xs font-semibold text-gray-450 dark:text-gray-500 mb-1.5">Current Password</label>
                   <input
                     type="password"
+                    autoComplete="current-password"
                     {...register('currentPassword', {
                       required: {
                         value: !!newPasswordVal,
@@ -155,6 +156,7 @@ const Profile = () => {
                   <label className="block text-xs font-semibold text-gray-450 dark:text-gray-500 mb-1.5">New Password</label>
                   <input
                     type="password"
+                    autoComplete="new-password"
                     {...register('newPassword', {
                       minLength: {
                         value: 8,
